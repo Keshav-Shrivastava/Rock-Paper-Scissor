@@ -62,5 +62,4 @@ public class rock_paper_scissors {
         }
         scanner.close();
     }
-}
-;
+};
