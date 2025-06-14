@@ -1,31 +1,66 @@
-import java.util.Scanner;
 import java.util.Random;
+import java.util.Scanner;
 
-public class rock_paper_scissor {
+public class rock_paper_scissors {
     public static void main(String[] args) {
-        System.out.println("Enter 0 for rock, 1 for paper, 2 for scissor : ");
-        Scanner sc = new Scanner(System.in);
-        int humanInput = sc.nextInt();
 
-        Random random = new Random();
-        int compInput = random.nextInt(3);
-        if(humanInput<=2){
-            System.out.println("Game Starts");
-        }
-        else {
-            System.out.println("Invalid user input");
-            return;
-        }
-        if (humanInput == compInput) {
-            System.out.println("Draw again!");
-        } else if (humanInput == 0 && compInput == 2 || humanInput == 1 && compInput == 0 || humanInput == 2 && compInput == 1) {
-            System.out.println("You win");
+        Scanner scanner = new Scanner(System.in);
 
-        } else {
-            System.out.println("Computer wins!");
-        }
+        while (true) {
+            String[] rps = {"r", "p", "s"};                                    // r = rock, p = paper, s = scissors
+            String systemMove = rps[new Random().nextInt(rps.length)];         // system-move
 
-        System.out.println("Comp choice :" + compInput);
+            String playerMove;
+
+            while(true) {
+                System.out.println("Please enter your move (r, p, or s)");
+                playerMove = scanner.nextLine();
+                if (playerMove.equals("r") || playerMove.equals("p") || playerMove.equals("s")) {
+                    break;
+                }
+                System.out.println(playerMove + " is not a valid move.");
+            }
+
+            System.out.println("System played: " + systemMove);
+
+            if (playerMove.equals(systemMove)) {
+                System.out.println("The game was a tie!");
+            }
+            else if (playerMove.equals("r")) {
+                if (systemMove.equals("p")) {
+                    System.out.println("You lose!");
+
+                } else if (systemMove.equals("s")) {
+                    System.out.println("You win!");
+                }
+            }
+
+            else if (playerMove.equals("p")) {
+                if (systemMove.equals("r")) {
+                    System.out.println("You win!");
+
+                } else if (systemMove.equals("s")) {
+                    System.out.println("You lose!");
+                }
+            }
+
+            else if (playerMove.equals("s")) {
+                if (systemMove.equals("p")) {
+                    System.out.println("You win!");
+
+                } else if (systemMove.equals("r")) {
+                    System.out.println("You lose!");
+                }
+            }
+
+            System.out.println("Play again? (y/n)");
+            String playAgain = scanner.nextLine();
+
+            if (!playAgain.equals("y")) {
+                break;
+            }
+        }
+        scanner.close();
     }
-
 }
+;
